@@ -33,25 +33,30 @@ class App extends Component {
   renderChangeToEnglishButton() {
     return this.state.locale === "zh-CN" &&
       <button onClick={() => this.setLocale("en-CA")}>
-        {intl.get('home.button_changeToEnglish')}
+        {intl.get('home.buttons.changeToEnglish')}
       </button>;
   }
 
   renderChangeToChineseButton() {
     return this.state.locale === "en-CA" &&
       <button onClick={() => this.setLocale("zh-CN")}>
-        {intl.get('home.button_changeToChinese')}
+        {intl.get('home.buttons.changeToChinese')}
       </button>;
   }
 
   render() {
+    let className = "font-family-english";
+    if (this.state.locale === "zh-CN") {
+      className = "font-family-chinese";
+    }
+
     return (
       this.state.initDone &&
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title"> {intl.get('home.welcome')}</h1>
+      <div className={className}>
+        <header className="app-header">
+          <h1 className="app-title"> {intl.get('home.welcome')}</h1>
         </header>
-        <p className="App-intro">
+        <p className="app-intro">
           {intl.get('home.introduction')}
         </p>
         {this.renderChangeToEnglishButton()}
